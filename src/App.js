@@ -1,8 +1,12 @@
+import React from 'react';
+import Api from './api/Api';
 import './App.css';
 
-function App() {
+const App = () => {
   return (
-    <div></div>
+    <div>
+      <Api />
+    </div>
   );
 }
 
