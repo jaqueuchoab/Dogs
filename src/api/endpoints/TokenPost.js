@@ -3,6 +3,7 @@ import React from 'react';
 const TokenPost = () => {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [token, setToken] = React.useState('');
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -32,6 +33,7 @@ const TokenPost = () => {
     })
     .then((json) => {
       console.log(json);
+      setToken(json.token);
       return json;
     });
   }
@@ -52,6 +54,7 @@ const TokenPost = () => {
         onChange={({ target }) => setPassword(target.value)}
       />
       <button>Enviar</button>
+      <p style={{wordBreak: 'break-all'}}>{token}</p>
     </form>
   );
 }
