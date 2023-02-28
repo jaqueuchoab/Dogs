@@ -4,8 +4,9 @@ import useForm from '../../Hooks/useForm';
 import useFetch from '../../Hooks/useFetch';
 import Input from '../Forms/Input';
 import Button from '../Forms/Button';
-import Error from '../Helper'
+import Error from '../Helper/Error';
 import { PHOTO_POST } from '../../api';
+import { useNavigate } from 'react-router-dom';
 
 const UserPhotoPost = () => {
   const nome = useForm();
@@ -13,6 +14,11 @@ const UserPhotoPost = () => {
   const idade = useForm('number');
   const [img, setImg] = React.useState({});
   const { data,  error, loading, request } = useFetch();
+  const navigate = useNavigate();
+
+  React.useEffect(() => {
+    if (data) navigate('/conta');
+  }, [data, navigate]);
 
   function handleSubmit(event) {
     event.preventDefault();
