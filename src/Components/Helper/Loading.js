@@ -2,6 +2,35 @@ import React from 'react';
 import style from './Loading.module.css';
 
 const Loading = () => {
+  const [step, setStep] = React.useState(0);
+
+  React.useEffect(() => {
+    function updateStep() {
+      return setStep((step) => {
+        if (step < 3) {
+          return step + 1;
+        } else {
+          return 0;
+        }
+      });
+    }
+
+    /* 
+    Ter atenção quanto à especificidade do setInterval de agendar intervalos, sendo que, se caso o elemento de loading  não existir mais o setInterval ainda chamará o setStep, mesmo que ele não exista.
+    Para isso, uma constante receberá o setInterval e no return do useEffect(), que só ocorre quando há o desmonte do elemento, ou seja ao fim do useEffect, p intervalo será limpado.
+    */
+    const inteval = setInterval(updateStep, 300);
+
+    return() => {
+      clearInterval(inteval);
+    }
+
+  }, []);
+
+  function displayStep(i) {
+    return {display: step === i ? 'block' : 'none'}
+  }
+
   return (
     <div className={style.wrapper}>
       <div className={style.loading}>
@@ -12,7 +41,7 @@ const Loading = () => {
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <g style={{ display: 'none' }}>
+          <g style={displayStep(0)}>
             <path
               fillRule="evenodd"
               clipRule="evenodd"
@@ -20,7 +49,7 @@ const Loading = () => {
               fill="#333"
             />
           </g>
-          <g style={{ display: 'none' }}>
+          <g style={displayStep(1)}>
             <path
               fill-rule="evenodd"
               clip-rule="evenodd"
@@ -41,7 +70,7 @@ const Loading = () => {
             />
           </g>
 
-          <g style={{ display: 'none' }}>
+          <g style={displayStep(2)}>
             <path
               fillRule="evenodd"
               clipRule="evenodd"
@@ -61,7 +90,7 @@ const Loading = () => {
               fill="#333"
             />
           </g>
-          <g style={{ display: 'none' }}>
+          <g style={displayStep(3)}>
             <path
               fillRule="evenodd"
               clipRule="evenodd"
