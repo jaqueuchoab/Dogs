@@ -7,17 +7,17 @@ import Loading from '../Helper/Loading';
 import style from '../../Styles/StylesFeed/FeedPhotos.module.css';
 
 
-const FeedPhotos = ({user, setModalPhoto}) => {
+const FeedPhotos = ({user, page, setModalPhoto}) => {
   const {data, loading, error, request} = useFetch();
 
   React.useEffect(() => {
     async function fetchPhotos() {
-      const { url, options } = PHOTOS_GET({page: 1, total: 6, user});
+      const { url, options } = PHOTOS_GET({page, total: 6, user});
       const { json } = await request(url, options);
       console.log(json);
     }
     fetchPhotos();
-  }, [request, user]);
+  }, [request, user, page]);
 
   if (error) return <Error />;
   if (loading) return <Loading />;
