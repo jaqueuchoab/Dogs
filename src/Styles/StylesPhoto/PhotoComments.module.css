@@ -5,6 +5,10 @@
   max-height: 20rem;
 }
 
+.single.comments {
+  padding: 0px;
+}
+
 .comments li{
   margin-bottom: 0.5rem;
   line-height: 1.2;
