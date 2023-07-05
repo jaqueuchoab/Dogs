@@ -6,12 +6,12 @@ import PhotoComments from './PhotoComments';
 import PhotoDelete from './PhotoDelete';
 import Image from '../Helper/Image';
 
-const PhotoContent = ({data}) => {
+const PhotoContent = ({ data, single }) => {
   const user = React.useContext(UserContext);
   const { photo, comments } = data;
 
   return (
-    <div className={style.photo}>
+    <div className={`${style.photo} ${single ? style.single : ""}`}>
       <div className={style.img}>
         <Image src={photo.src} alt={photo.title}/>
       </div>
@@ -35,7 +35,7 @@ const PhotoContent = ({data}) => {
             </li>
           </ul>
         </div>
-        <PhotoComments id={photo.id} comments={comments} />
+        <PhotoComments id={photo.id} comments={comments} single={single}/>
       </div>
     </div>
   );
