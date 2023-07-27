@@ -29,16 +29,12 @@ const UserStatsGraphs = ({ data }) => {
         <VictoryPie 
           data={graph} 
           innerRadius={50}
-          padding={{top: 20, bottom: 20, left: 80, rigth: 80}}
+          padding={{top: 10, bottom: 10, left: 70, rigth: 70}}
           style={{
             data: {
               fillOpacity: .9,
               stroke: '#fff',
               strokeWidth: 2,
-            },
-            labels: {
-              fontSize: 14,
-              fill: '#333',
             }
           }}
         />
